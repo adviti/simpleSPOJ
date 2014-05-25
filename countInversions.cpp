@@ -1,13 +1,14 @@
 #include<iostream>
 using namespace std;
 
-int mergeAndCount(int arr[], int left, int mid, int right)
+typedef long long int lld;
+int mergeAndCount(lld arr[], lld left, lld mid, lld right)
 {
-    int inv_count = 0;
-    int i = left;
-    int j = mid; 
-    int k = left; 
-    int temp[10];
+    lld inv_count = 0;
+    lld i = left;
+    lld j = mid; 
+    lld k = left; 
+    lld temp[right+1];
       while ((i <= mid - 1) && (j <= right))
       {
         if (arr[i] <= arr[j])
@@ -18,19 +19,18 @@ int mergeAndCount(int arr[], int left, int mid, int right)
         {
           temp[k++] = arr[j++];
      
-         /*this is tricky -- see above explanation/diagram for merge()*/
+        
           inv_count = inv_count + (mid - i);
         }
       }
       while (i <= mid - 1)
     temp[k++] = arr[i++];
  
-  /* Copy the remaining elements of right subarray
-   (if there are any) to temp*/
+  
   while (j <= right)
     temp[k++] = arr[j++];
  
-  /*Copy back the merged elements to original array*/
+  
   for (i=left; i <= right; i++)
    { arr[i] = temp[i];}
  
@@ -40,10 +40,10 @@ int mergeAndCount(int arr[], int left, int mid, int right)
     return inv_count;
 }
 
-int sortAndCount(int arr[], int left, int right)
+int sortAndCount(lld arr[], lld left, lld right)
 {
     
-    int mid, inv_count = 0;
+    lld mid, inv_count = 0;
     if(right>left)
     {
         mid = (right +left)/2;
@@ -54,13 +54,48 @@ int sortAndCount(int arr[], int left, int right)
     return inv_count;
 }
 
+int simplensquare(int n, int arr[])
+{
+    
+    int ans=0;
+    for(int i=0; i<n-1; i++)
+    {
+        for(int j=i+1; j<n; j++)
+        {
+            cout<<arr[i]<<"  "<<arr[j]<<endl;
+            if(arr[i]>arr[j]) {cout<<" derfre"<<endl;ans = ans+1; }
+            
+        }
+    }
+    return ans;
+}
 
 int main()
 {
-    int a[10] = {23, 67,1, 28, 92, 65, 45, 12, 87 , 34};
-    cout<<sortAndCount(a, 0, 9)<<endl;
-    for (int i=0; i <= 9; i++)
-   { cout<<a[i]<<" ";}
+    
+    int tc;
+    cin>>tc;
+    while(tc--)
+    {
+        lld n;
+        cin>>n;
+        lld arr[n];
+        for(int i=0; i<n; i++)
+        {
+            cin>>arr[i];
+        }
+        lld ans = sortAndCount(arr, 0, n-1);
+        cout<<ans<<endl;
+        cout<<ans<<endl;
+    }
+    
+    
+    
+    //int a[10] = {23, 67,1, 28, 92, 65, 45, 12, 87 , 34};
+    //cout<<sortAndCount(a, 0, 9)<<endl;
+    ////cout<<simplensquare(10, a)<<endl;
+    //for (int i=0; i <= 9; i++)
+   //{ cout<<a[i]<<" ";}
     return 0;
     
 }
