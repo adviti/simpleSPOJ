@@ -2,6 +2,7 @@
 using namespace std;
 
 typedef long long int lld;
+//right+1 = size of array
 int mergeAndCount(lld arr[], lld left, lld mid, lld right)
 {
     lld inv_count = 0;
